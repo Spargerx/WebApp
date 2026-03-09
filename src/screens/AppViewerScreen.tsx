@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, StyleSheet, BackHandler, ActivityIndicator, Text } from 'react-native';
+import { View, StyleSheet, BackHandler, ActivityIndicator, Text, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { WebView } from 'react-native-webview';
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -35,10 +36,11 @@ export default function AppViewerScreen() {
   const userAgent = "Mozilla/5.0 (Linux; Android 13; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"; // Imitating modern browser
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <StatusBar barStyle="dark-content" backgroundColor="#000" translucent={false} />
       {isLoading && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#4285F4" />
+          <ActivityIndicator size="large" color="#6C5CE7" />
           <Text style={styles.loadingText}>Opening {name}...</Text>
         </View>
       )}
@@ -48,7 +50,7 @@ export default function AppViewerScreen() {
         source={{ uri: url }}
         style={styles.webview}
         userAgent={userAgent}
-        allowsBackForwardNavigationGestures // Essential for iOS swipe back
+        allowsBackForwardNavigationGestures
         pullToRefreshEnabled={true}
         onNavigationStateChange={(navState) => {
           setCanGoBack(navState.canGoBack);
@@ -60,7 +62,7 @@ export default function AppViewerScreen() {
         cacheEnabled={true}
         originWhitelist={['*']}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
