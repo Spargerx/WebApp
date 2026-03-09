@@ -73,3 +73,33 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Gradle build output files
+android/build_output.txt
+tsc_output.txt
+ts_err.txt
+
+# Android APK / AAB
+*.apk
+*.aab
+
+# TypeScript
+tsconfig.tsbuildinfo
